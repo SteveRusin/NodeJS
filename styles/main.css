@@ -1,0 +1,13 @@
+* {
+    transition:  0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.list-group-item {
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+.list-group-item:hover {
+    background: rgba(185, 179, 177, 0.2);
+}
