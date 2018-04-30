@@ -12,12 +12,14 @@ $(document).ready(() => {
 
 
     $('#upload').change(e => {
+        const data = new FormData();
+        data.append('file', e.target.files[0])
         fetch(`${serverDomain}/files`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "image/*; text/plain"
                 },
-                body: e.target.files[0]
+                body: data
             })
             .then(res => console.log('my response', res))
     });

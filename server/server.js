@@ -7,6 +7,7 @@ const deleteFileHandler = require('./modules/deleteFileHandler');
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
 
     if (req.method === 'GET') {
@@ -28,7 +29,6 @@ const server = http.createServer((req, res) => {
         res.statusCode = 405;
         res.end('Method not allowed');
     }
-
 });
 
 
