@@ -16,6 +16,6 @@ module.exports = {
     ],
     watchContentBase: true,
     compress: true,
-    port: 8080
+    port: 8081
   }
 };

@@ -1,12 +1,13 @@
 module.exports = (serverDomain) => {
     $('#upload').change(e => {
-        fetch(`${serverDomain}/files`, {
+        const file = e.target.files[0]
+        fetch(`${serverDomain}/files/${file.name}`, {
                 method: 'POST',
-                headers: {
-                    "Content-Type": "image/*; text/plain"
-                },
-                body: e.target.files[0]
+                body: file
             })
-            .then(res => console.log('my response', res))
+            .then(res => location.reload())
     });
+
+
+
 }

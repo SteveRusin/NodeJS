@@ -1,0 +1,17 @@
+Лютий 3625
+Березень 3573,5
+
+
+To review/repeat/re-red/refresh knowlange
+Code standards, naming conventions 
+BEM*optional
+Code Review Tools and process
+CI/CD/CD general overview
+SDLC in general, to be more confident
+BA role
+Estimations
+
+
+Advanced things:
+Npm version package
+TDD/BDD in general

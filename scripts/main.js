@@ -4,6 +4,7 @@ const toJSON = require('./modules/toJSON');
 const handleError = require('./modules/handleError');
 const attachDelete = require('./modules/attachDelete');
 const attachPost = require('./modules/attachPost');
+
 $(document).ready(() => {
     fetch(`${serverDomain}/files`)
         .then(toJSON)

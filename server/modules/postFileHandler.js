@@ -1,19 +1,27 @@
 const fs = require('fs');
 const path = require('path');
-const bodyParser = require("body-parser");
+
 
 module.exports = (req, res) => {
-    res.statusCode = 200;
-    res.end('ok');
-/*     fs.unlink(path.resolve(path.dirname(__dirname), `./${decodeURI(req.url)}`), err => {
-        if (err) {
-            res.statusCode = 404;
-            res.end('Error');
-        } else {
-            res.statusCode = 204;
-            res.end(`File ${req.url} has been deleted`)
-        }
-    })
+    if (req.headers['content-type'].includes('text/plain')) {
 
-    fs.appendFile() */
+
+        const data = [];
+
+        req.on('data', (chunk) => {
+            data.push(chunk)
+        })
+
+        req.on('end', () => {
+            fs.writeFile(path.resolve(path.dirname(__dirname), `./${decodeURI(req.url)}`), data, () => {
+                res.statusCode = 201;
+                res.end();
+            })
+        })
+
+
+    } else {
+        res.statusCode = 415;
+        res.end();
+    }
 }
