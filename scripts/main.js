@@ -13,4 +13,6 @@ $(document).ready(() => {
 
     attachPost(serverDomain);
     attachDelete(serverDomain, $('#list'));
+    
+    window.addEventListener('fetch', e=>console.log(e))
 })

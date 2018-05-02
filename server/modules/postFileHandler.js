@@ -10,6 +10,7 @@ module.exports = (req, res) => {
 
         req.on('data', (chunk) => {
             data.push(chunk)
+            
         })
 
         req.on('end', () => {
@@ -20,8 +21,31 @@ module.exports = (req, res) => {
         })
 
 
+    } else if (req.headers['content-type'].includes('audio/')) {
+
+        var wstream = fs.createWriteStream(path.resolve(path.dirname(__dirname), `./${decodeURI(req.url)}`), {flags: 'w'});
+
+        req.on('data', (chunk) => {
+            wstream.write(chunk);
+            res.write(chunk);
+        })
+
+
+        req.on('end', ()=>{
+            wstream.end();
+            res.end();
+            
+        })
+
+        req.on('error', ()=>{
+            res.statusCode = 500;
+            wstream.end();
+            res.end();
+        })
+
+        res.statusCode = 200;
     } else {
         res.statusCode = 415;
-        res.end();
+        res.end('Media Not Supported');
     }
 }
