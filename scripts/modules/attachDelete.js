@@ -1,12 +1,12 @@
 module.exports = (serverDomain, $list) => {
     $list.on('click', '.delete', (e)=>{
-        const fileName = $(e.target).siblings('.file-name').text();
+        const fileName = $(e.currentTarget).closest('.list-group-item').find('.file-name').text();
         fetch(`${serverDomain}/files/${fileName}`, {
             method: 'DELETE'
-        })
+        })  
         .then(res => {
             if (res.status === 204) {
-                const $container = $(e.target).parent('.list-group-item');
+                const $container = $(e.target).closest('.list-group-item');
                 $container.slideUp(400, () => {
                     $container.remove();
 

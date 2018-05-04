@@ -3,7 +3,10 @@ module.exports = ($selector, filesArr) => {
         $selector.append($.map(filesArr, file => `
         <a href="#" class="list-group-item list-group-item-action">
         <span class="file-name align-middle"><strong>${file}</strong></span>
-        <button class="btn btn-danger float-right delete">Delete</button>
+        <div class="float-right">
+        <button class="btn btn-primary download">Download</button>
+        <button class="btn btn-danger delete">Delete</button>
+        </div>
         </a>
         `));
     } else {

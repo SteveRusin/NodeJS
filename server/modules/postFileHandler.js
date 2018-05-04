@@ -18,10 +18,10 @@ module.exports = (req, res) => {
         res.end();
     })
 
-    req.on('error', () => {
+    req.on('error', (err) => {
         res.statusCode = 500;
         wstream.end();
-        res.end();
+        res.end(JSON.stringify(err));
     })
 
     res.statusCode = 200;

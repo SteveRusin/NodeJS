@@ -15,7 +15,6 @@ module.exports = (serverDomain) => {
                 }
             },
             processData: false,
-            contentType: 'audio/mp3',
             xhr: function () {
                 const xhr = new window.XMLHttpRequest();
                 xhr.upload.addEventListener("progress", function (evt) {
@@ -23,14 +22,14 @@ module.exports = (serverDomain) => {
                         const complete = evt.loaded / evt.total;
                         const percentComplete = (complete * 100).toFixed(1)
                         $('.progress').attr('value',  percentComplete);
-                        $('progress:after').css('left',  `${percentComplete}px`);
+                        $('progress').css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
                     }
                 }, false);
                 xhr.addEventListener("progress", function (evt) {
                     if (evt.lengthComputable) {
                         const percentComplete = evt.loaded / evt.total;
                         $('.progress').attr('value', percentComplete);
-                        $('progress:after').css('left',  `${percentComplete}px`);
+                        $('progress').css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
                     }
                 }, false);
                 return xhr;

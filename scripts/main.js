@@ -4,6 +4,7 @@ const toJSON = require('./modules/toJSON');
 const handleError = require('./modules/handleError');
 const attachDelete = require('./modules/attachDelete');
 const attachPost = require('./modules/attachPost');
+const attachGet = require('./modules/attachGet');
 
 $(document).ready(() => {
     fetch(`${serverDomain}/files`)
@@ -11,8 +12,7 @@ $(document).ready(() => {
         .then(files => buildFilesList($('#list'), files))
         .catch(handleError);
 
+    attachGet(serverDomain, $('#list')); 
     attachPost(serverDomain);
     attachDelete(serverDomain, $('#list'));
-    
-    window.addEventListener('fetch', e=>console.log(e))
 })
