@@ -5,6 +5,8 @@ const handleError = require('./modules/handleError');
 const attachDelete = require('./modules/attachDelete');
 const attachPost = require('./modules/attachPost');
 const attachGet = require('./modules/attachGet');
+const playVideo = require('./modules/playVideo');
+const playAudio = require('./modules/playAudio');
 
 $(document).ready(() => {
     fetch(`${serverDomain}/files`)
@@ -15,4 +17,6 @@ $(document).ready(() => {
     attachGet(serverDomain, $('#list')); 
     attachPost(serverDomain);
     attachDelete(serverDomain, $('#list'));
+    playVideo(serverDomain, $('#list'));
+    playAudio(serverDomain, $('#list'));
 })

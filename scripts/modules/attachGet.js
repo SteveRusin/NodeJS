@@ -1,7 +1,8 @@
 module.exports = (serverDomain, $list) => {
     $list.on('click', '.download', (e)=>{
-        const fileName = $(e.currentTarget).closest('.list-group-item').find('.file-name strong').text();
-        const $progress = $(e.currentTarget).closest('.row').find('.progress-file');
+        const $download = $(e.currentTarget);
+        const fileName = $download.closest('.list-group-item').find('.file-name strong').text();
+        const $progress = $download.closest('.row').find('.progress-file');
          $.ajax({
             type: "GET",
             url: `${serverDomain}/files/${fileName}`,
@@ -15,6 +16,7 @@ module.exports = (serverDomain, $list) => {
                     a.click();
                     window.URL.revokeObjectURL(url);
                 }
+                $download.prop('disabled', false);
             },
             xhrFields: {
                 responseType: 'blob'
@@ -22,6 +24,7 @@ module.exports = (serverDomain, $list) => {
             xhr: function () {
                 const xhr = new window.XMLHttpRequest();
                 $progress.show(0);
+                $download.prop('disabled', true);
                 xhr.onprogress = (evt)=>{
                     if (evt.lengthComputable) {
                         const complete = evt.loaded / evt.total;

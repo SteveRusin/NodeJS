@@ -95,4 +95,14 @@ progress:after {
     display: none;
 }
 
+#modal {
+    overflow: visible;
+    max-width: 100%;
+    text-align: center;
+}
+
+#videoPlayer {
+    max-width: 90%;
+}
+
 

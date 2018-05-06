@@ -9,28 +9,35 @@
     <link rel="icon" href="./favicon.ico" sizes="16x16" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+    <!-- jQuery Modal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="./styles/main.css">
+
 </head>
 
 <body>
     <progress class="progress post-progress" value="0" max="100"></progress>
+
     <div id="wrapper" class="container-fluid">
         <h2>Files</h2>
         <button class="fileContainer btn btn-outline-primary">
-                Upload more files
-                <input id="upload" type="file"/>
+            Upload more files
+            <input id="upload" type="file" />
         </button>
         <div id="list" class="list-group container"></div>
     </div>
 
+    
+    <div id="modal" class="modal">
+        <audio id="audioPlayer" class="hidden" controls></audio>
+        <video id="videoPlayer" class="hidden" controls></video>
+    </div>
 
-
-    <script
-    src="http://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script src="./build/bundle.js"></script>
 </body>
 

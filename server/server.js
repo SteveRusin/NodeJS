@@ -4,6 +4,7 @@ const getFileHandler = require('./modules/getFileHandler');
 const getFilesHandler = require('./modules/getFilesHandler');
 const postFileHandler = require('./modules/postFileHandler');
 const deleteFileHandler = require('./modules/deleteFileHandler');
+const playVideoHandler = require('./modules/playVideoHandler');
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,6 +16,8 @@ const server = http.createServer((req, res) => {
 
         if (req.url === '/files') {
             getFilesHandler(req, res);
+        }else if(req.url.includes('/files') && req.headers.range){
+            playVideoHandler(req, res);
         } else if (req.url.includes('/files')) {
             getFileHandler(req, res);
         }
