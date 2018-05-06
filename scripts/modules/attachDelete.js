@@ -6,7 +6,7 @@ module.exports = (serverDomain, $list) => {
         })  
         .then(res => {
             if (res.status === 204) {
-                const $container = $(e.target).closest('.list-group-item');
+                const $container = $(e.target).closest('.row');
                 $container.slideUp(400, () => {
                     $container.remove();
 

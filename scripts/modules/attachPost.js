@@ -1,6 +1,7 @@
 module.exports = (serverDomain) => {
     $('#upload').change(e => {
-        const file = e.target.files[0]
+        const file = e.target.files[0];
+        const $progress = $('.post-progress');
         if (!file) return;
         // AJAX
          $.ajax({
@@ -21,15 +22,15 @@ module.exports = (serverDomain) => {
                     if (evt.lengthComputable) {
                         const complete = evt.loaded / evt.total;
                         const percentComplete = (complete * 100).toFixed(1)
-                        $('.progress').attr('value',  percentComplete);
-                        $('progress').css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
+                        $progress.attr('value',  percentComplete);
+                        $progress.css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
                     }
                 }, false);
                 xhr.addEventListener("progress", function (evt) {
                     if (evt.lengthComputable) {
                         const percentComplete = evt.loaded / evt.total;
-                        $('.progress').attr('value', percentComplete);
-                        $('progress').css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
+                        $progress.attr('value', percentComplete);
+                        $progress.css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
                     }
                 }, false);
                 return xhr;

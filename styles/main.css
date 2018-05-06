@@ -1,6 +1,16 @@
 #wrapper {
     margin-top: 20px;
 }
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+progress {
+    overflow: visible !important;
+}
 
 progress::-webkit-progress-bar {
     background: white;
@@ -40,6 +50,17 @@ progress:after {
     text-shadow: 1px 1px goldenrod;
 }
 
+.progress-file {
+    top: auto;
+    bottom: -20px;
+    width: 100%;
+}
+
+.row {
+    position: relative;
+    margin: 20px 0;
+}
+
 #list {
     margin-top: 15px;
 }
@@ -74,10 +95,4 @@ progress:after {
     display: none;
 }
 
-.progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    overflow: visible;
-}
+

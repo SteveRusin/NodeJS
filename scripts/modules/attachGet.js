@@ -1,6 +1,7 @@
 module.exports = (serverDomain, $list) => {
     $list.on('click', '.download', (e)=>{
-        const fileName = $(e.currentTarget).closest('.list-group-item').find('.file-name').text();
+        const fileName = $(e.currentTarget).closest('.list-group-item').find('.file-name strong').text();
+        const $progress = $(e.currentTarget).closest('.row').find('.progress-file');
          $.ajax({
             type: "GET",
             url: `${serverDomain}/files/${fileName}`,
@@ -20,13 +21,24 @@ module.exports = (serverDomain, $list) => {
             },
             xhr: function () {
                 const xhr = new window.XMLHttpRequest();
+                $progress.show(0);
                 xhr.onprogress = (evt)=>{
                     if (evt.lengthComputable) {
                         const complete = evt.loaded / evt.total;
                         const percentComplete = (complete * 100).toFixed(1)
-                        $('.progress').attr('value',  percentComplete);
-                        $('progress').css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
+                        $progress.attr('value',  percentComplete);
+                        $progress.css('color',  `hsl(${percentComplete*3.6}, 100%, 50%)`);
                     }
+                }
+
+                xhr.onloadend = (evt) => {
+                    $progress.attr('value',  100);
+                    setTimeout(()=>{
+                        $progress.fadeOut(1000, ()=>{
+                            $progress.hide(0);
+                            $progress.attr('value',  0);
+                        })
+                    }, 1000)
                 }
                 return xhr;
             }
