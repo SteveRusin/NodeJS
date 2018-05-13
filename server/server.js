@@ -1,10 +1,14 @@
 const http = require('http');
 const port = 8079;
+const mongo = require('./mongo');
 const getFileHandler = require('./modules/getFileHandler');
 const getFilesHandler = require('./modules/getFilesHandler');
 const postFileHandler = require('./modules/postFileHandler');
 const deleteFileHandler = require('./modules/deleteFileHandler');
 const playVideoHandler = require('./modules/playVideoHandler');
+
+
+mongo();
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -49,5 +53,7 @@ server.listen(port, err => {
         return console.error('ERROR', err)
     };
 
-    console.log(`server is listening port ${port}`)
+     console.log(`server is listening port ${port}`)
 })
+
+

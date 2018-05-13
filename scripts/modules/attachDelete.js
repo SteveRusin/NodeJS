@@ -1,6 +1,6 @@
 module.exports = (serverDomain, $list) => {
     $list.on('click', '.delete', (e)=>{
-        const fileName = $(e.currentTarget).closest('.list-group-item').find('.file-name').text();
+        const fileName = $(e.currentTarget).closest('.list-group-item').find('.file-name strong').text();
         fetch(`${serverDomain}/files/${fileName}`, {
             method: 'DELETE'
         })  
