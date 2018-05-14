@@ -3,8 +3,8 @@ const path = require('path');
 const filesCollection = require('./mongo');
 
 module.exports = async (req, res) => {
-    const files = await filesCollection().find().toArray();
-    if(files){
+    const files = await filesCollection().collection('fs.files').find().toArray();
+     if(files){
         res.statusCode = 200;
         res.end(JSON.stringify(files));
     }else {

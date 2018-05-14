@@ -12,7 +12,8 @@ module.exports = () => {
             if(!err){
                 console.log('connected')
             }
-            filesCollection = client.db('dbformentoring').collection('files');
+            //filesCollection = client.db('dbformentoring').collection('files');
+            filesCollection = client.db('dbformentoring');
         });
     }
 }

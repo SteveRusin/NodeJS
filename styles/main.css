@@ -72,6 +72,10 @@ progress:after {
     margin-top: 10px;
 }
 
+.list-group-item strong {
+    margin-left: 5px;
+}
+
 .fileContainer {
     overflow: hidden;
     position: relative;

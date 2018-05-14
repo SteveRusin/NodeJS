@@ -8,6 +8,9 @@ module.exports = (serverDomain) => {
             type: "POST",
             url: `${serverDomain}/files/${file.name}`,
             data: file,
+            headers: {
+                'x-filename': file.name
+            },
             success: (data, textStatus, xhr) => {
                 if (xhr.status === 200) {
                     setTimeout(()=>{

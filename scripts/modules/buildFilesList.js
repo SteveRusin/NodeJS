@@ -2,10 +2,10 @@ module.exports = ($selector, filesArr) => {
     if (filesArr.length) {
         $selector.append($.map(filesArr, file => `
         <div class="row">
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href="#" data-id="${file._id}" class="list-group-item list-group-item-action">
             <div style="display: inline-block">
-                    <div class="file-name align-middle">Name:<strong>${file.name}</strong></div>
-                    <div class="file-size align-middle">Size:<strong>${file.size} Mb</strong></div>
+                    <div class="file-name align-middle">Name:<strong>${file.filename}</strong></div>
+                    <div class="file-size align-middle">Size:<strong>${(file.length/1000000).toFixed(1)} Mb</strong></div>
             </div>
                 <div class="float-right">
                 ${(file.extension === '.mkv' ||
