@@ -1,8 +1,12 @@
 module.exports = (serverDomain, $list) => {
     $list.on('click', '.delete', (e)=>{
-        const fileName = $(e.currentTarget).closest('.list-group-item').find('.file-name strong').text();
+        const fileId = $(e.currentTarget).closest('.list-group-item').data('id');
+        const fileName = $(e.currentTarget).closest('.list-group-item').find('file-name strong').text();
         fetch(`${serverDomain}/files/${fileName}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'x-fileid': fileId 
+            }
         })  
         .then(res => {
             if (res.status === 204) {

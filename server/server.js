@@ -12,7 +12,7 @@ require('./modules/mongo')();
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-filename');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-filename, x-fileid');
 
 
     if (req.method === 'GET') {
