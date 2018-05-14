@@ -2,10 +2,14 @@ module.exports = (serverDomain, $list) => {
     $list.on('click', '.download', (e)=>{
         const $download = $(e.currentTarget);
         const fileName = $download.closest('.list-group-item').find('.file-name strong').text();
+        const fileId = $download.closest('.list-group-item').data('id');
         const $progress = $download.closest('.row').find('.progress-file');
          $.ajax({
             type: "GET",
             url: `${serverDomain}/files/${fileName}`,
+            headers: {
+                'x-fileid': fileId
+            },
             processData: false,
             success: (data, textStatus, xhr) => {
                 if(xhr.status===200){

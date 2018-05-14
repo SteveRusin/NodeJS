@@ -9,14 +9,15 @@ module.exports = (serverDomain) => {
             url: `${serverDomain}/files/${file.name}`,
             data: file,
             headers: {
-                'x-filename': file.name
+                'x-filename': file.name,
+                'x-filetype': file.type
             },
             success: (data, textStatus, xhr) => {
-                if (xhr.status === 200) {
+/*                 if (xhr.status === 200) {
                     setTimeout(()=>{
                         location.reload()
                     }, 500)
-                }
+                } */
             },
             processData: false,
             xhr: function () {

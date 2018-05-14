@@ -1,25 +1,20 @@
 const fs = require('fs');
 const path = require('path');
-
+const filesCollection = require('./mongo');
+const Grid = require('gridfs-stream');
+const mongo = require('mongodb');
 
 module.exports = (req, res) => {
-    const filePath = path.resolve(path.dirname(__dirname), `./${decodeURI(req.url)}`)
-    const rStream = fs.createReadStream(filePath);
-    fs.stat(filePath, (err, stat)=> {
-        if (err) { 
-            res.end(JSON.stringify(err));
-         }
-        res.writeHead(200, {
-          'Content-Length' : stat.size
-        });
+    const files = filesCollection();
+    const gfs = new Grid(files, mongo);
+    const fileId = req.headers['x-fileid'];
 
-        rStream.pipe(res);
+    const rstream = gfs.createReadStream({
+        _id: fileId
+    });
 
-      }); 
 
-  rStream.on('error', (err)=>{
-      res.end(JSON.stringify(err));
-  })
 
-  res.statusCode = 200;
+    rstream.pipe(res);
+    res.statusCode = 200;
 }

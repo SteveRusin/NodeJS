@@ -7,7 +7,11 @@ const mongo = require('mongodb');
 module.exports = (req, res) => {
     const files = filesCollection();
     const gfs = new Grid(files, mongo);
-    const wstream = gfs.createWriteStream({filename: decodeURI(req.headers['x-filename'])})
+    const wstream = gfs.createWriteStream({
+        filename: decodeURI(req.headers['x-filename']),
+        mode: 'w',
+        content_type: req.headers['x-filetype']
+    })
 
     req.on('data', chunk=>{
         wstream.write(chunk);

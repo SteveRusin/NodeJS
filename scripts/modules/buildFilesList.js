@@ -8,11 +8,11 @@ module.exports = ($selector, filesArr) => {
                     <div class="file-size align-middle">Size:<strong>${(file.length/1000000).toFixed(1)} Mb</strong></div>
             </div>
                 <div class="float-right">
-                ${(file.extension === '.mkv' ||
-                   file.extension === '.avi')
+                ${(file.contentType === 'video/mkv' ||
+                   file.contentType === 'video/avi')
                 ? `<button class="btn btn-success watch">Watch</button>`
                 : ''}
-                ${file.extension === '.mp3'
+                ${file.contentType === 'audio/mp3'
                 ? `<button class="btn btn-dark music">Play</button>`
                 : ''}
                     <button class="btn btn-primary download">Download</button>
