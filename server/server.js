@@ -1,14 +1,13 @@
 const http = require('http');
 const port = 8079;
-const mongo = require('./mongo');
 const getFileHandler = require('./modules/getFileHandler');
 const getFilesHandler = require('./modules/getFilesHandler');
 const postFileHandler = require('./modules/postFileHandler');
 const deleteFileHandler = require('./modules/deleteFileHandler');
 const playVideoHandler = require('./modules/playVideoHandler');
 
-
-mongo();
+// connect to db;
+require('./modules/mongo')();
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

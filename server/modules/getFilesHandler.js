@@ -1,20 +1,15 @@
 const fs = require('fs');
 const path = require('path');
+const filesCollection = require('./mongo');
 
-
-module.exports = (req, res) => {
-    const files = fs.readdirSync(path.resolve(path.dirname(__dirname), './files'));
-    const response = [];
-    for (let file of files) {
-        const filePath = path.resolve(path.dirname(__dirname), './files', file);
-        const extension = path.extname(filePath);
-        const size = (fs.statSync(filePath).size  / 1000000).toFixed(1);
-        response.push({
-            name: file,
-            size,
-            extension
-        })
+module.exports = async (req, res) => {
+    const files = await filesCollection().find().toArray();
+    if(files){
+        res.statusCode = 200;
+        res.end(JSON.stringify(files));
+    }else {
+        res.statusCode = 404;
+        res.end()
     }
-    res.statusCode = 200;
-    res.end(JSON.stringify(response));
+
 }
